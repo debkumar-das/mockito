@@ -85,7 +85,7 @@ public interface MockMaker {
      *                {@link #getHandler(Object)} will return this instance.
      * @param instance  The object to spy upon.
      * @param <T> Type of the mock to return, actually the <code>settings.getTypeToMock</code>.
-     * @return
+     * @return The spy instance, if this mock maker supports direct spy creation.
      * @since 3.5.0
      */
     default <T> Optional<T> createSpy(
@@ -197,6 +197,12 @@ public interface MockMaker {
                         "You can simply enable this mock mode, by placing the 'mockito-inline' artifact where you are currently using 'mockito-core'.",
                         "Note that Mockito's inline mock maker is not supported on Android."));
     }
+
+    /**
+     * Clears all cashes for mocked types and removes all byte code alterations, if possible.
+     */
+    @Incubating
+    default void clearAllCaches() {}
 
     /**
      * Carries the mockability information
